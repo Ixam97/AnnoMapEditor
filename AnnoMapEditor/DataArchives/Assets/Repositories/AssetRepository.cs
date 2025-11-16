@@ -19,6 +19,7 @@ namespace AnnoMapEditor.DataArchives.Assets.Repositories
     public class AssetRepository : Repository
     {
         private const string ASSETS_XML_PATH = "data/config/export/main/asset/assets.xml";
+        private const string ASSETS_XML_PATH_117 = "data/base/config/export/assets.xml";
 
 
         private static readonly Logger<AssetRepository> _logger = new();
@@ -110,7 +111,8 @@ namespace AnnoMapEditor.DataArchives.Assets.Repositories
             // load assets.xml
             Stopwatch watch = Stopwatch.StartNew();
 
-            Stream assetsXmlStream = _dataArchive.OpenRead(ASSETS_XML_PATH)
+            // TODO: 117 adaptation:
+            Stream assetsXmlStream = _dataArchive.OpenRead(ASSETS_XML_PATH_117)
                 ?? throw new Exception($"Could not locate assets.xml.");
 
             var xpath = GetXpath();

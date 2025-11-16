@@ -33,7 +33,7 @@ namespace AnnoMapEditor.DataArchives.Assets.Models
 
             // IslandRegion defaults to Moderate. If the MapTemplate belongs to another region,
             // it must have TemplateRegion set explicitly within assets.xml.
-            IslandRegionId = randomIslandValues.Element(nameof(IslandRegion))?.Value ?? RegionAsset.REGION_MODERATE_REGIONID;
+            IslandRegionId = randomIslandValues.Element(nameof(IslandRegion))?.Value ?? RegionAsset.REGION_ROMAN_REGIONID;
 
             FilePath = randomIslandValues.Element(nameof(FilePath))?.Value
                 ?? throw new Exception($"XML is not a valid {nameof(RandomIslandAsset)}. Required attribute '{nameof(FilePath)}' not found.");

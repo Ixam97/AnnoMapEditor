@@ -36,7 +36,7 @@ namespace AnnoMapEditor.DataArchives.Assets.Models
 
             // TemplateRegion defaults to Moderate. If the MapTemplate belongs to another region,
             // it must have TemplateRegion set explicitly within assets.xml.
-            TemplateRegionId = mapTemplateValues.Element(nameof(TemplateRegion))?.Value ?? RegionAsset.REGION_MODERATE_REGIONID;
+            TemplateRegionId = mapTemplateValues.Element(nameof(TemplateRegion))?.Value ?? RegionAsset.REGION_ROMAN_REGIONID;
 
             string? templateMapTypeStr = mapTemplateValues.Element(nameof(TemplateMapType))?.Value;
             if (templateMapTypeStr != null)

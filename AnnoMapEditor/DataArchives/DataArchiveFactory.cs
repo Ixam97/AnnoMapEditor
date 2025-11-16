@@ -51,7 +51,8 @@ namespace AnnoMapEditor.DataArchives
 
             FileSystemBuilder builder = FileSystemBuilder.Create()
                 .FromPath(dataPath)
-                .OnlyArchivesMatchingWildcard("data*.rda")
+                // TODO: 117 Adaptation:
+                //.OnlyArchivesMatchingWildcard("data*.rda")
                 .WithDefaultSorting()
                 .ConfigureLoadZeroByteFiles(false)
                 .AddWhitelisted(EXTENSION_WHITELIST);

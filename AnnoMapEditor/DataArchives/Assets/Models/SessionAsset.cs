@@ -20,6 +20,9 @@ namespace AnnoMapEditor.DataArchives.Assets.Models
         public const long SESSION_SUNKENTREASURES_GUID = 110934;
         public const long SESSION_ARCTIC_GUID = 180045;
         public const long SESSION_ENBESA_GUID = 112132;
+        
+        public const long SESSION_ROMAN_GUID = 3245;
+        public const long SESSION_CELTIC_GUID = 6627;
 
 
         [StaticAsset(SESSION_OLDWORLD_GUID)]
@@ -46,8 +49,10 @@ namespace AnnoMapEditor.DataArchives.Assets.Models
         /// </summary>
         private static readonly Dictionary<long, long> REGIONID_HARDCODED = new()
         {
-            [SESSION_OLDWORLD_GUID] = RegionAsset.REGION_MODERATE_GUID, // The Old World => Moderate
-            [SESSION_NEWWORLD_GUID] = RegionAsset.REGION_SOUTHAMERICA_GUID  // The New World => Colony01
+            // [SESSION_OLDWORLD_GUID] = RegionAsset.REGION_MODERATE_GUID, // The Old World => Moderate
+            // [SESSION_NEWWORLD_GUID] = RegionAsset.REGION_SOUTHAMERICA_GUID  // The New World => Colony01
+            [SESSION_ROMAN_GUID] = RegionAsset.REGION_ROMAN_GUID,
+            [SESSION_CELTIC_GUID] = RegionAsset.REGION_CELTIC_GUID
         };
 
 
@@ -113,7 +118,7 @@ namespace AnnoMapEditor.DataArchives.Assets.Models
                 RegionGuid = REGIONID_HARDCODED[GUID];
             // default to Moderate
             else
-                RegionGuid = RegionAsset.REGION_MODERATE_GUID;
+                RegionGuid = RegionAsset.REGION_ROMAN_GUID;
         }
 
 
