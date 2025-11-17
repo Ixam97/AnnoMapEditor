@@ -60,6 +60,7 @@
         <Entry Value ="3" Name ="ThirdParty" />
         <Entry Value ="4" Name ="PirateIsland" />
         <Entry Value ="5" Name ="Cliff" />
+        <!--<Entry Value ="6" Name ="UnknownType"/>-->
       </Enum>
     </Convert>
     <!--

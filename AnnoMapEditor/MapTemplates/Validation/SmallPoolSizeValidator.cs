@@ -28,8 +28,9 @@ namespace AnnoMapEditor.MapTemplates.Validation
             }
 
             // subtract Archibald / Nate / Isabel from the counter
-            if ((mapTemplate.Session == SessionAsset.OldWorld || mapTemplate.Session == SessionAsset.NewWorld || mapTemplate.Session == SessionAsset.CapeTrelawney) && thirdPartyCount > 0)
-                --smallIslandCount;
+            // TODO: Adjust for 117
+            // if ((mapTemplate.Session == SessionAsset.OldWorld || mapTemplate.Session == SessionAsset.NewWorld || mapTemplate.Session == SessionAsset.CapeTrelawney) && thirdPartyCount > 0)
+            //     --smallIslandCount;
 
             // subtract all but one pirate island from the counter
             if (pirateCount > 0)

@@ -142,8 +142,9 @@ namespace AnnoMapEditor.MapTemplates.Models
                 {
                     if (assetRepository.TryGet(guid, out FertilityAsset? fertility) && fertility != null)
                         Fertilities.Add(fertility);
-                    else
-                        throw new Exception($"Unrecognized {nameof(FertilityAsset)} for GUID {guid}.");
+                    // TODO: Fix fertilities for 117
+                    // else
+                    //     throw new Exception($"Unrecognized {nameof(FertilityAsset)} for GUID {guid}.");
                 }
             }
 

@@ -15,18 +15,22 @@ namespace AnnoMapEditor.MapTemplates.Serializing
         {
             return await Task.Run(() =>
             {
-                try
-                {
+                // try
+                // {
                     stream.Seek(0, SeekOrigin.Begin);
                     var version = VersionDetector.GetCompressionVersion(stream);
                     stream.Seek(0, SeekOrigin.Begin);
                     return FileDBConvert.DeserializeObject<T>(stream,
-                        new FileDBSerializerOptions() { Version = version });
-                }
-                catch
-                {
-                    return null;
-                }
+                        new FileDBSerializerOptions()
+                        {
+                            Version = version , 
+                            IgnoreMissingProperties =  true // TODO: Temporary fix to load Maps. Implement proper Document Models for 117.
+                        });
+                // }
+                // catch
+                // {
+                //     return null;
+                // }
             });
         }
 
@@ -34,8 +38,8 @@ namespace AnnoMapEditor.MapTemplates.Serializing
         {
             return await Task.Run(() =>
             {
-                try
-                { 
+                // try
+                // { 
                     // load xml
                     XmlDocument xmlDocument = new();
                     xmlDocument.Load(stream);
@@ -53,11 +57,11 @@ namespace AnnoMapEditor.MapTemplates.Serializing
                     // construct deserialize into objects
                     FileDBDocumentDeserializer<T> deserializer = new(new FileDBSerializerOptions() { IgnoreMissingProperties = true });
                     return deserializer.GetObjectStructureFromFileDBDocument(doc);
-                }
-                catch
-                {
-                    return null;
-                }
+                // }
+                // catch
+                // {
+                //     return null;
+                // }
             });
         }
 

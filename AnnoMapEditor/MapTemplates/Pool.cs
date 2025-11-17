@@ -2,13 +2,39 @@
 using AnnoMapEditor.MapTemplates.Enums;
 using System;
 using System.Collections.Generic;
+using AnnoMapEditor.Utilities;
 
 namespace AnnoMapEditor.MapTemplates
 {
     public class Pool
     {
+        public static readonly Logger<Pool> _logger = new();
         public static readonly IEnumerable<Pool> All = new List<Pool>()
         {
+            // Roman
+            new(RegionAsset.Roman, IslandSize.Small,
+                "data/base/provinces/roman/islands/pool/roman_island_small_{0}/roman_island_small_{0}.a7m", 7
+                ),
+            new(RegionAsset.Roman, IslandSize.Medium,
+                "data/base/provinces/roman/islands/pool/roman_island_medium_{0}/roman_island_medium_{0}.a7m", 8
+                ),
+            new(RegionAsset.Roman, IslandSize.Large,
+                new FilePathRange[]
+                {
+                    new FilePathRange("data/base/provinces/roman/islands/pool/roman_island_large_{0}/roman_island_large_{0}.a7m", 
+                        new int[] {1, 2, 3, 4, 5, 6, 7, 9}),
+                    new FilePathRange("data/base/provinces/roman/islands/pool/roman_island_extralarge_{0}/roman_island_extralarge_{0}.a7m", 1, 4)
+                }),
+            
+            // Celtic
+            new(RegionAsset.Celctic, IslandSize.Small, 
+                "data/base/provinces/celtic/islands/pool/celtic_island_small_{0}/celtic_island_small_{0}.a7m", 7
+                ),
+            new(RegionAsset.Celctic, IslandSize.Medium,
+                "data/base/provinces/celtic/islands/pool/celtic_island_medium_{0}/celtic_island_medium_{0}.a7m", 7
+                ),
+            new(RegionAsset.Celctic, IslandSize.Large,
+                "data/base/provinces/celtic/islands/pool/celtic_island_large_{0}/celtic_island_large_{0}.a7m", 8)
             // Moderate
             // new(RegionAsset.Moderate, IslandSize.Small,
             //     "data/sessions/islands/pool/moderate/moderate_s_{0}/moderate_s_{0}.a7m", 12
@@ -61,6 +87,12 @@ namespace AnnoMapEditor.MapTemplates
             foreach (Pool pool in All)
             {
                 _poolsMap[(pool.Region, pool.IslandSize)] = pool;
+            }
+            
+            _logger.LogInformation("Pools map loaded:");
+            foreach (var poolsMapKey in _poolsMap.Keys)
+            {
+                _logger.LogInformation($"{poolsMapKey}");
             }
         }
 

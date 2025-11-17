@@ -15,11 +15,15 @@ namespace AnnoMapEditor.DataArchives.Assets.Models
         public FertilityAsset(XElement valuesXml)
             : base(valuesXml)
         {
-            DisplayName = valuesXml.Element("Text")!
-                .Element("LocaText")!
-                .Element("English")!
-                .Element("Text")!
-                .Value!;
+            // TODO: 117 Localization
+            DisplayName = valuesXml.Element("Standard")?
+                .Element("Name")?
+                .Value ?? "UnknownFertilityAsset";
+            // DisplayName = valuesXml.Element("Text")!
+            //     .Element("LocaText")!
+            //     .Element("English")!
+            //     .Element("Text")!
+            //     .Value!;
         }
     }
 }

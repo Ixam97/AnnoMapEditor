@@ -4,14 +4,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using AnnoMapEditor.Utilities;
 
 namespace AnnoMapEditor.DataArchives.Assets.Models
 {
     /**
      * Class for 117 Regions
      */
+    [AssetTemplate(TEMPLATE_NAME)]
     public class RegionAsset : StandardAsset
     {
+        public static readonly Logger<RegionAsset> _logger = new();
+        
         public const string TEMPLATE_NAME = "Region";
 
         public const long REGION_ROMAN_GUID = 3225;
@@ -62,12 +66,16 @@ namespace AnnoMapEditor.DataArchives.Assets.Models
         public RegionAsset(XElement valuesXml)
             : base(valuesXml)
         {
-            DisplayName = valuesXml.Element("Text")!
-                .Element("LocaText")?
-                .Element("English")!
-                .Element("Text")!
-                .Value!
-                ?? "Meta";
+            // TODO: 117 does something different regarding localization...
+            DisplayName = valuesXml.Element("Standard")?
+                .Element("Name")?
+                .Value ?? "Unknown Region Name";
+            // DisplayName = valuesXml.Element("Text")!
+            //     .Element("LocaText")?
+            //     .Element("English")!
+            //     .Element("Text")!
+            //     .Value!
+            //     ?? "Meta";
 
             XElement regionElement = valuesXml.Element(TEMPLATE_NAME)!;
 

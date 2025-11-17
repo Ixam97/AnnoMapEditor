@@ -85,7 +85,8 @@ namespace AnnoMapEditor.DataArchives
                     _assetRepository.Register<RegionAsset>();
                     _assetRepository.Register<FertilityAsset>();
                     _assetRepository.Register<RandomIslandAsset>();
-                    _assetRepository.Register<SlotAsset>();
+                    // TODO: 117 does not have fixed slots like 1800!
+                    // _assetRepository.Register<SlotAsset>();
                     _assetRepository.Register<MinimapSceneAsset>();
                     _assetRepository.Register<SessionAsset>();
                     _assetRepository.Register<MapTemplateAsset>();
@@ -105,6 +106,7 @@ namespace AnnoMapEditor.DataArchives
             {
                 UpdateStatus(isInitializing: false, isInitialized: false, errorMessage: ex.Message);
                 _logger.LogInformation($"Could not initialize DataManager at '{dataPath}'.");
+                _logger.LogInformation(ex.Message);
                 return;
             }
 

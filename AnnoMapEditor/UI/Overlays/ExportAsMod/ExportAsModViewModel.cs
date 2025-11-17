@@ -77,7 +77,9 @@ namespace AnnoMapEditor.UI.Overlays.ExportAsMod
         {
             MapTemplate = mapTemplate;
 
-            ShowMapTypeSelection = mapTemplate.Session == SessionAsset.OldWorld;
+            // TODO: Adjust for 117
+            // ShowMapTypeSelection = mapTemplate.Session == SessionAsset.OldWorld;
+            ShowMapTypeSelection = mapTemplate.Session == SessionAsset.Roman;
             if (ShowMapTypeSelection)
                 SelectedMapType = AllowedMapTypes.First();
 

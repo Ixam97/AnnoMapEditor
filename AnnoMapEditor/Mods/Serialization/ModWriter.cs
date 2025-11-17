@@ -100,7 +100,9 @@ namespace AnnoMapEditor.Mods.Serialization
                     .Where(m => m.TemplateFilename.Contains("pool"));
 
                 // For The Old World filter according to the MapType.
-                if (session == SessionAsset.OldWorld)
+                // TODO: Adjust for 117
+                // if (session == SessionAsset.OldWorld)
+                if (session == SessionAsset.Roman)
                 {
                     if (mapType != null)
                         mapTemplates = mapTemplates.Where(m => m.TemplateMapType == mapType);
@@ -124,7 +126,9 @@ namespace AnnoMapEditor.Mods.Serialization
             await WriteModinfoJson(mod, modPath);
 
             //Only write Language XML for OW Maps, as only they need naming in a menu
-            if (session == SessionAsset.OldWorld)
+            // TODO: Adjust for 117
+            if (session == SessionAsset.Roman)
+            // if (session == SessionAsset.OldWorld)
                 await WriteLanguageXml(modPath, mod.Name, mod.MapType!.Guid);
 
             // create the first copy of a7t, a7tinfo and a7te
@@ -192,7 +196,9 @@ namespace AnnoMapEditor.Mods.Serialization
         private static async Task WriteModinfoJson(Mod mod, string modPath)
         {
             string modDescription;
-            if (mod.MapTemplate.Session == SessionAsset.OldWorld)
+            // TODO: Adjust for 117
+            // if (mod.MapTemplate.Session == SessionAsset.OldWorld)
+            if (mod.MapTemplate.Session == SessionAsset.Roman)
                 modDescription = $"Select Map Type '{mod.Name}' to play this map.\n"
                                + $"World and island sizes are fixed.\n\n";
             else

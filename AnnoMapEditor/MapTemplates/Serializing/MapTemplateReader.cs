@@ -45,9 +45,14 @@ namespace AnnoMapEditor.MapTemplates.Serializing
             return await FromBinaryStreamAsync(session, a7tinfoStream);
         }
 
+        public class MapTemplateDocumentFixed : MapTemplateDocument
+        {
+            
+        }
+
         public async Task<MapTemplate> FromBinaryStreamAsync(SessionAsset session, Stream a7tinfoStream)
         {
-            var doc = await FileDBSerializer.ReadAsync<MapTemplateDocument>(a7tinfoStream);
+            var doc = await FileDBSerializer.ReadAsync<MapTemplateDocumentFixed>(a7tinfoStream);
             if (doc is null)
                 throw new Exception($"Could not read MapTemplate from binary stream.");
 

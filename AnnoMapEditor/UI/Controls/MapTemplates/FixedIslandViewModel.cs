@@ -32,7 +32,7 @@ namespace AnnoMapEditor.UI.Controls.MapTemplates
             : base(mapTemplate, fixedIsland)
         {
             _fixedIsland = fixedIsland;
-            _isContinentalIsland = _fixedIsland.IslandAsset.IslandSize.FirstOrDefault() == IslandSize.Continental;
+            _isContinentalIsland = false; // = _fixedIsland.IslandAsset.IslandSize.FirstOrDefault() == IslandSize.Continental;
 
             SlotAssignments = new(_fixedIsland.SlotAssignments.Values.Where(s => s.Slot.SlotAsset != null));
 

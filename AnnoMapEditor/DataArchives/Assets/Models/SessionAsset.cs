@@ -10,22 +10,24 @@ using System.Xml.Linq;
 
 namespace AnnoMapEditor.DataArchives.Assets.Models
 {
-    [AssetTemplate("SessionModerate", "SessionSouthAmerica", "SessionArctic")]
+    // [AssetTemplate("SessionModerate", "SessionSouthAmerica", "SessionArctic")]
+    [AssetTemplate("SessionModerate")]
     public class SessionAsset : StandardAsset
     {
+        public static readonly Logger<SessionAsset> _logger = new();
         public const string TEMPLATE_NAME = "Session";
 
-        public const long SESSION_OLDWORLD_GUID = 180023;
-        public const long SESSION_NEWWORLD_GUID = 180025;
-        public const long SESSION_SUNKENTREASURES_GUID = 110934;
-        public const long SESSION_ARCTIC_GUID = 180045;
-        public const long SESSION_ENBESA_GUID = 112132;
+        // public const long SESSION_OLDWORLD_GUID = 180023;
+        // public const long SESSION_NEWWORLD_GUID = 180025;
+        // public const long SESSION_SUNKENTREASURES_GUID = 110934;
+        // public const long SESSION_ARCTIC_GUID = 180045;
+        // public const long SESSION_ENBESA_GUID = 112132;
         
         public const long SESSION_ROMAN_GUID = 3245;
         public const long SESSION_CELTIC_GUID = 6627;
 
 
-        [StaticAsset(SESSION_OLDWORLD_GUID)]
+        /*[StaticAsset(SESSION_OLDWORLD_GUID)]
         public static SessionAsset OldWorld { get; private set; }
 
         [StaticAsset(SESSION_NEWWORLD_GUID)]
@@ -39,9 +41,17 @@ namespace AnnoMapEditor.DataArchives.Assets.Models
 
         [StaticAsset(SESSION_ENBESA_GUID)]
         public static SessionAsset Enbesa { get; private set; }
+        */
+        
+        // public static IEnumerable<SessionAsset> SupportedSessions => new[] { OldWorld, NewWorld, CapeTrelawney, Arctic, Enbesa };
 
-        public static IEnumerable<SessionAsset> SupportedSessions => new[] { OldWorld, NewWorld, CapeTrelawney, Arctic, Enbesa };
-
+        [StaticAsset(SESSION_ROMAN_GUID)]
+        public static SessionAsset Roman {get; private set;}
+        
+        [StaticAsset(SESSION_CELTIC_GUID)]
+        public static SessionAsset Celtic {get; private set;}
+        
+        public static IEnumerable<SessionAsset> SupportedSessions => new[] { Roman, Celtic };
 
         /// <summary>
         /// The session assets for The Old World and The New World to not properly reference their
@@ -77,12 +87,17 @@ namespace AnnoMapEditor.DataArchives.Assets.Models
         public SessionAsset(XElement valuesXml)
             : base(valuesXml)
         {
-            DisplayName = valuesXml.Element("Text")!
-                .Element("LocaText")?
-                .Element("English")!
-                .Element("Text")!
-                .Value!
-                ?? "Meta";
+            // TODO: 117 uses different Syntax for localization ...
+            DisplayName = valuesXml.Element("Standard")?
+                .Element("Name")?
+                .Value ?? "Unknown Session Name";
+            
+            // DisplayName = valuesXml.Element("Text")!
+            //     .Element("LocaText")?
+            //     .Element("English")!
+            //     .Element("Text")!
+            //     .Value!
+            //     ?? "Unknown Session Name";
 
             XElement sessionValues = valuesXml.Element(TEMPLATE_NAME)
                 ?? throw new Exception($"XML is not a valid {nameof(SessionAsset)}. It does not have '{TEMPLATE_NAME}' section in its values.");
@@ -124,25 +139,32 @@ namespace AnnoMapEditor.DataArchives.Assets.Models
 
         public static SessionAsset DetectFromPath(string filePath)
         {
-            if (filePath.Contains("colony01") || filePath.Contains("ggj") || filePath.Contains("scenario03"))
-                return NewWorld;
-            else if (filePath.Contains("dlc03") || filePath.Contains("colony_03"))
-                return Arctic;
-            else if (filePath.Contains("dlc06") || filePath.Contains("colony02") || filePath.Contains("scenario02"))
-                return Enbesa;
-            else if (filePath.Contains("sunken_treasures"))
-                return CapeTrelawney;
+            // if (filePath.Contains("colony01") || filePath.Contains("ggj") || filePath.Contains("scenario03"))
+            //     return NewWorld;
+            // else if (filePath.Contains("dlc03") || filePath.Contains("colony_03"))
+            //     return Arctic;
+            // else if (filePath.Contains("dlc06") || filePath.Contains("colony02") || filePath.Contains("scenario02"))
+            //     return Enbesa;
+            // else if (filePath.Contains("sunken_treasures"))
+            //     return CapeTrelawney;
+            // else
+            //     return OldWorld;
+            if (filePath.Contains("celtic"))
+                return Celtic;
             else
-                return OldWorld;
+                return Roman;
         }
 
         public static SessionAsset DetectFromGuid(long guid)
         {
-            if (guid == SESSION_SUNKENTREASURES_GUID) return CapeTrelawney;
-            if (guid == SESSION_ARCTIC_GUID) return Arctic;
-            if (guid == SESSION_NEWWORLD_GUID) return NewWorld;
-            if (guid == SESSION_ENBESA_GUID) return Enbesa;
-            else return OldWorld;
+            // if (guid == SESSION_SUNKENTREASURES_GUID) return CapeTrelawney;
+            // if (guid == SESSION_ARCTIC_GUID) return Arctic;
+            // if (guid == SESSION_NEWWORLD_GUID) return NewWorld;
+            // if (guid == SESSION_ENBESA_GUID) return Enbesa;
+            // else return OldWorld;
+
+            if (guid == SESSION_CELTIC_GUID) return Celtic;
+            else return Roman;
         }
 
 

@@ -199,7 +199,9 @@ namespace AnnoMapEditor.UI.Windows.Main
             const int DEFAULT_PLAYABLE_SIZE = 2160;
 
             MapTemplateFilePath = null;
-            MapTemplate = new MapTemplate(DEFAULT_MAP_SIZE, DEFAULT_PLAYABLE_SIZE, SessionAsset.OldWorld); 
+            // TODO: Adjust for 117
+            // MapTemplate = new MapTemplate(DEFAULT_MAP_SIZE, DEFAULT_PLAYABLE_SIZE, SessionAsset.OldWorld); 
+            MapTemplate = new MapTemplate(DEFAULT_MAP_SIZE, DEFAULT_PLAYABLE_SIZE, SessionAsset.Roman); 
             // TODO: Find a better solution for this "Hack"
             ToolbarService.Instance.ButtonClick(ToolbarButtonType.ZoomReset);
         }

@@ -208,9 +208,11 @@ namespace AnnoMapEditor.MapTemplates.Models
             _templateDocument.MapTemplate.TemplateElement = new List<TemplateElement>(Elements.Select(x => x.ToTemplate()).Where(x => x is not null)!);
             _templateDocument.MapTemplate.ElementCount = _templateDocument.MapTemplate.TemplateElement.Count;
 
-            if (Session == SessionAsset.NewWorld)
-                _templateDocument.MapTemplate.InitialPlayableArea = _templateDocument.MapTemplate.PlayableArea;
-            else
+            // TODO: Adjust for 117
+            // if (Session == SessionAsset.NewWorld)
+            //     _templateDocument.MapTemplate.InitialPlayableArea = _templateDocument.MapTemplate.PlayableArea;
+            // else
+                
                 _templateDocument.MapTemplate.InitialPlayableArea = null;
 
             return _templateDocument;
