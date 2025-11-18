@@ -37,6 +37,10 @@ namespace AnnoMapEditor.DataArchives
             // Icons are referenced as .png but stored as .dds.
             if (iconPath.EndsWith(".png"))
                 iconPath = iconPath[0..^4] + "_0.dds";
+            
+            // TODO: For 117, implement this cleanly...
+            // In Anno 117, "fhd" is referenced but the icon actually is stored under "4k".
+            iconPath = iconPath.Replace("/fhd/", "/4k/");
 
             // open the file
             using Stream? stream = OpenRead(iconPath);

@@ -36,6 +36,11 @@ namespace AnnoMapEditor.UI.Controls.IslandProperties
 
         public string ShortenedDisplayName => FertilityAsset.DisplayName
             .Replace(" Fertility", "")
-            .Replace(" Abundance", "s");
+            .Replace(" Abundance", "s")
+            // TODO: For 117:
+            .Replace("Fertility ", "")
+            .Replace("Deposit ", "")
+            .Replace("Roman ", "")
+            .Replace("Celtic ", "");
     }
 }

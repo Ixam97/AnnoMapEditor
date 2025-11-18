@@ -27,13 +27,13 @@ namespace AnnoMapEditor.MapTemplates
                 }),
             
             // Celtic
-            new(RegionAsset.Celctic, IslandSize.Small, 
+            new(RegionAsset.Celtic, IslandSize.Small, 
                 "data/base/provinces/celtic/islands/pool/celtic_island_small_{0}/celtic_island_small_{0}.a7m", 7
                 ),
-            new(RegionAsset.Celctic, IslandSize.Medium,
+            new(RegionAsset.Celtic, IslandSize.Medium,
                 "data/base/provinces/celtic/islands/pool/celtic_island_medium_{0}/celtic_island_medium_{0}.a7m", 7
                 ),
-            new(RegionAsset.Celctic, IslandSize.Large,
+            new(RegionAsset.Celtic, IslandSize.Large,
                 "data/base/provinces/celtic/islands/pool/celtic_island_large_{0}/celtic_island_large_{0}.a7m", 8)
             // Moderate
             // new(RegionAsset.Moderate, IslandSize.Small,

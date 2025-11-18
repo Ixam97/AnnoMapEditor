@@ -27,7 +27,6 @@ namespace AnnoMapEditor.UI.Controls.IslandProperties
         {
             if (x == null || y == null)
                 throw new ArgumentNullException();
-
             if (!_orderLookup.TryGetValue(x.GUID, out int xIndex))
                 return 1;
 

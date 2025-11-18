@@ -24,7 +24,7 @@ namespace AnnoMapEditor.MapTemplates.Serializing
                         new FileDBSerializerOptions()
                         {
                             Version = version , 
-                            IgnoreMissingProperties =  true // TODO: Temporary fix to load Maps. Implement proper Document Models for 117.
+                            // IgnoreMissingProperties =  true // TODO: Temporary fix to load Maps. Implement proper Document Models for 117.
                         });
                 // }
                 // catch

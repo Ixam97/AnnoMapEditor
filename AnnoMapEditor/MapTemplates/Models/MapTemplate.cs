@@ -1,4 +1,5 @@
-﻿using Anno.FileDBModels.Anno1800.MapTemplate;
+﻿// using A1800MapTemplate = Anno.FileDBModels.Anno1800.MapTemplate;
+using Anno.FileDBModels.Anno117.MapTemplate;
 using AnnoMapEditor.DataArchives.Assets.Models;
 using AnnoMapEditor.Utilities;
 using System;
@@ -74,6 +75,11 @@ namespace AnnoMapEditor.MapTemplates.Models
         {
             _session = session;
             _templateDocument = new MapTemplateDocument();
+        }
+        
+        public MapTemplate(Anno.FileDBModels.Anno1800.MapTemplate.MapTemplateDocument document, SessionAsset session) : this()
+        {
+            // TODO: Dummy for now
         }
 
         public MapTemplate(MapTemplateDocument document, SessionAsset session) : this()

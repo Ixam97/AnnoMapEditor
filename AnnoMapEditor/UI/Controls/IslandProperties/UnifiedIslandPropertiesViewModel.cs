@@ -4,7 +4,9 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
+using AnnoMapEditor.DataArchives;
 using AnnoMapEditor.DataArchives.Assets.Models;
+using AnnoMapEditor.DataArchives.Assets.Repositories;
 using AnnoMapEditor.MapTemplates.Enums;
 using AnnoMapEditor.MapTemplates.Models;
 using AnnoMapEditor.UI.Controls.Slots;
@@ -20,6 +22,7 @@ namespace AnnoMapEditor.UI.Controls.IslandProperties
      */
     public class UnifiedIslandPropertiesViewModel : ObservableBase
     {
+        private static readonly Logger<UnifiedIslandPropertiesViewModel> _logger = new();
 
         public UnifiedIslandPropertiesViewModel(IslandElement selectedIsland, MapTemplate mapTemplate)
         {
@@ -336,7 +339,9 @@ namespace AnnoMapEditor.UI.Controls.IslandProperties
         private void UpdateSelectedFertilities()
         {
             if (SelectedIsland is not FixedIslandElement fixedIsland) return;
-            var allowedFertilities = MapTemplate.Session.Region.AllowedFertilities
+            
+            var allowedFertilities = DataManager.Instance.AssetRepository.GetAll<FertilityAsset>() // MapTemplate.Session.Region.AllowedFertilities
+                .Where(asset => asset.AllowedRegionGUIDs.Contains(MapTemplate.Session.Region.GUID))
                 .Distinct()
                 .ToList();
                 

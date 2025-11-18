@@ -164,6 +164,7 @@ namespace AnnoMapEditor.DataArchives.Assets.Repositories
                     if (asset is not null)
                     {
                         _assets.Add(asset.GUID, asset);
+                        _logger.LogInformation($"Added asset {asset.Name}.");
                     }
                 }
             });

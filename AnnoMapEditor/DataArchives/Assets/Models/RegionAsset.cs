@@ -28,9 +28,9 @@ namespace AnnoMapEditor.DataArchives.Assets.Models
         public static RegionAsset Roman { get; private set; }
 
         [StaticAsset(REGION_CELTIC_GUID)]
-        public static RegionAsset Celctic { get; private set; }
+        public static RegionAsset Celtic { get; private set; }
 
-        public static IEnumerable<RegionAsset> SupportedRegions => new[] { Roman, Celctic };
+        public static IEnumerable<RegionAsset> SupportedRegions => new[] { Roman, Celtic };
 
 
         /// <summary>
@@ -91,6 +91,9 @@ namespace AnnoMapEditor.DataArchives.Assets.Models
                 .Select(x => long.Parse(x.Value))
                 .ToArray()
                 ?? Array.Empty<long>();
+            
+            if (RegionID == "Roman") Roman = this;
+            else if (RegionID == "Celtic") Celtic = this;
         }
 
 
@@ -106,7 +109,7 @@ namespace AnnoMapEditor.DataArchives.Assets.Models
             //     return Moderate;
             
             if (filePath.Contains("celtic"))
-                return Celctic;
+                return Celtic;
             else 
                 return Roman;
         }

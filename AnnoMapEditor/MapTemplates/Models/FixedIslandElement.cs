@@ -1,4 +1,5 @@
-﻿using Anno.FileDBModels.Anno1800.MapTemplate;
+﻿// using Anno.FileDBModels.Anno1800.MapTemplate;
+using Anno.FileDBModels.Anno117.MapTemplate;
 using AnnoMapEditor.DataArchives;
 using AnnoMapEditor.DataArchives.Assets.Models;
 using AnnoMapEditor.DataArchives.Assets.Repositories;
@@ -106,7 +107,8 @@ namespace AnnoMapEditor.MapTemplates.Models
             System.Diagnostics.Debug.WriteLineIf(sourceElement.Rotation90 != null, $"Reading source data {sourceElement.Rotation90} to rotation value of {_rotation} on path {islandFilePath}.");
 
             _randomizeFertilities = sourceElement.RandomizeFertilities != false;
-            _randomizeSlots = sourceElement.MineSlotMapping == null || sourceElement.MineSlotMapping.Count == 0;
+            // TODO: 117 doesn't use mining slots.
+            // _randomizeSlots = sourceElement.MineSlotMapping == null || sourceElement.MineSlotMapping.Count == 0;
 
             LoadIslandDataFromRepository(sourceElement);
         }
@@ -150,7 +152,8 @@ namespace AnnoMapEditor.MapTemplates.Models
 
             // fixed slots
             // _randomizeSlots is loaded in constructor.
-            if (sourceElement.MineSlotMapping != null)
+            // TODO: 117 doesn use mine slots.
+            /*if (sourceElement.MineSlotMapping != null)
             {
                 foreach ((long objectId, int slotGuid) in sourceElement.MineSlotMapping)
                 {
@@ -179,7 +182,7 @@ namespace AnnoMapEditor.MapTemplates.Models
                         AssignedSlot = slotAsset
                     });
                 }
-            }
+            }*/
 
             // add remaining assignable slots
             foreach (Slot slot in islandAsset.Slots.Values)
@@ -263,7 +266,8 @@ namespace AnnoMapEditor.MapTemplates.Models
             // Fixed slots
             //   MineSlotMapping = [(8252351, 1000063), (162612, 0), ...]
             //
-            if (_randomizeSlots)
+            // TODO: 117 doesn't use mine slot mapping
+            /*if (_randomizeSlots)
                 resultElement.MineSlotMapping = new();
             else
                 resultElement.MineSlotMapping = IslandAsset.Slots.Values
@@ -275,7 +279,7 @@ namespace AnnoMapEditor.MapTemplates.Models
 
                         return new Tuple<long, int>(s.ObjectId, slotGuid);
                     })
-                    .ToList();
+                    .ToList();*/
 
             // despite its name, all fixed islands must have a RandomIslandConfig.
             resultElement.RandomIslandConfig = new()

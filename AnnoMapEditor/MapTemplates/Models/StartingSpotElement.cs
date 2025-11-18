@@ -1,4 +1,5 @@
-﻿using Anno.FileDBModels.Anno1800.MapTemplate;
+﻿// using Anno.FileDBModels.Anno1800.MapTemplate;
+using Anno.FileDBModels.Anno117.MapTemplate;
 
 namespace AnnoMapEditor.MapTemplates.Models
 {
